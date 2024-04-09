@@ -2,8 +2,8 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
-const api = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
-const apiKey = 'AIzaSyA3uAI3chHdNxEAJ7kpbzJA5BX-8jlhkp0'
+const api = 'https://identitytoolkit.googleapis.com/v1/accounts:'
+const apiKey = import.meta.env.VITE_API_KEY
 
 export const useAuthStore = defineStore('authStore', () => {
   const userInfo = ref({
@@ -17,12 +17,16 @@ export const useAuthStore = defineStore('authStore', () => {
   const errorText = ref('')
   const loader = ref(false)
 
-  const signup = async (payload) => {
+  const auth = async (payload, type) => {
+    const stringUrl = type === 'signup' ? 'signUp' : 'signInWithPassword'
     errorText.value = ''
     loader.value = true
     try {
-      let response = await axios.post(api + apiKey, { ...payload, returnSecureToken: true })
-
+      let response = await axios.post(api + stringUrl + '?key=' + apiKey, {
+        ...payload,
+        returnSecureToken: true
+      })
+      console.log(response.data)
       userInfo.value = {
         token: response.data.idToken,
         email: response.data.email,
@@ -30,9 +34,8 @@ export const useAuthStore = defineStore('authStore', () => {
         refreshToken: response.data.refreshToken,
         expiresIn: response.data.expiresIn
       }
-      loader.value = false
     } catch (error) {
-      loader.value = false
+      console.log(error.response.data.error.message)
       switch (error.response.data.error.message) {
         case 'EMAIL_EXISTS':
           errorText.value = 'The email address is already in use by another account'
@@ -45,12 +48,32 @@ export const useAuthStore = defineStore('authStore', () => {
           errorText.value =
             'We have blocked all requests from this device due to unusual activity. Try again later'
           break
-        default:
-          error.value = 'error'
+        case 'EMAIL_NOT_FOUND':
+          errorText.value =
+            'There is no user record corresponding to this identifier. The user may have been deleted.'
+          break
+        case 'INVALID_PASSWORD':
+          errorText.value = 'The password is invalid or the user does not have a password.'
+          break
+        case 'MISSING_EMAIL':
+          errorText.value = 'The email not be empty.'
+          break
+        case 'MISSING_PASSWORD':
+          errorText.value = 'The password not be empty.'
+          break
+        case 'INVALID_EMAIL':
+          errorText.value = 'The email is invalid.'
+          break
+        case 'INVALID_LOGIN_CREDENTIALS':
+          errorText.value = 'The email or password is invallid.'
           break
       }
+
+      throw errorText.value
+    } finally {
+      loader.value = false
     }
   }
 
-  return { signup, userInfo, errorText, loader }
+  return { auth, userInfo, errorText, loader }
 })

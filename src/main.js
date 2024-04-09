@@ -9,6 +9,9 @@ import App from './App.vue'
 import router from './router'
 import PrimeVue from 'primevue/config'
 import { initializeApp } from 'firebase/app'
+import Button from 'primevue/button'
+import InputText from 'primevue/inputtext'
+import Message from 'primevue/message'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA3uAI3chHdNxEAJ7kpbzJA5BX-8jlhkp0',
@@ -19,11 +22,15 @@ const firebaseConfig = {
   appId: '1:77874838445:web:9911e7ef43ca9433b1ff24'
 }
 
+console.log(import.meta.env)
 initializeApp(firebaseConfig)
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
 app.use(PrimeVue)
+app.component('Button', Button)
+app.component('InputText', InputText)
+app.component('Message', Message)
 
 app.mount('#app')
