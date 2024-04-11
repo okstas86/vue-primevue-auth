@@ -1,11 +1,9 @@
 <template>
   <div>
-    <Button label="Submit" />
+    <h1>Home</h1>
   </div>
 </template>
 
-<script setup>
-import Button from 'primevue/button'
-</script>
+<script setup></script>
 
 <style scoped></style>

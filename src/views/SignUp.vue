@@ -1,6 +1,6 @@
 <template>
   <form class="flex flex-column gap-3">
-    <h2>Sign Up</h2>
+    <h2 class="title">Sign Up</h2>
     <Message v-if="authStore.errorText" severity="error">{{ authStore.errorText }}</Message>
 
     <div class="p-inputgroup flex-1">
@@ -18,7 +18,11 @@
     <Loader v-if="authStore.loader" />
     <div v-else class="flex flex-column gap-3">
       <Button @click="signup" label="Signup" />
-      <span>Are you alredy registered?<router-link to="/signin">Sign in</router-link></span>
+      <span
+        >Are you alredy registered?<router-link class="link" to="/signin"
+          >Sign in</router-link
+        ></span
+      >
     </div>
   </form>
 </template>
@@ -38,4 +42,4 @@ const signup = async () => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

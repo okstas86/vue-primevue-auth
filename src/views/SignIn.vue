@@ -1,6 +1,6 @@
 <template>
   <form class="flex flex-column gap-3">
-    <h2>Sign In</h2>
+    <h2 class="title">Sign In</h2>
     <Message v-if="authStore.errorText" severity="error">{{ authStore.errorText }}</Message>
 
     <div class="p-inputgroup flex-1">
@@ -18,7 +18,11 @@
     <Loader v-if="authStore.loader" />
     <div v-else class="flex flex-column gap-3">
       <Button @click="signin" label="Signup" />
-      <span>Are you not registered yet?<router-link to="/signup">Sign up</router-link></span>
+      <span
+        >Are you not registered yet?<router-link class="link" to="/signup"
+          >Sign up</router-link
+        ></span
+      >
     </div>
   </form>
 </template>
