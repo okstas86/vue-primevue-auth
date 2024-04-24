@@ -1,28 +1,37 @@
 <template>
   <div class="container">
     <form class="flex flex-column gap-3">
-      <h2 class="title text-4xl">Sign In</h2>
+      <h2 class="title text-4xl">{{ $t('signin') }}</h2>
       <Message v-if="authStore.errorText" severity="error">{{ authStore.errorText }}</Message>
 
       <div class="p-inputgroup flex-1">
         <span class="p-inputgroup-addon">
           <i class="pi pi-user text-2xl"></i>
         </span>
-        <InputText class="input-text" type="email" v-model="email" placeholder="Your Email" />
+        <InputText
+          class="input-text"
+          type="email"
+          v-model="email"
+          :placeholder="$t('placeholders.username')"
+        />
       </div>
       <div class="p-inputgroup flex-1">
         <span class="p-inputgroup-addon">
           <i class="pi pi-at text-2xl"></i>
         </span>
-        <InputText class="input-text" type="password" v-model="password" placeholder="Password" />
+        <InputText
+          class="input-text"
+          type="password"
+          v-model="password"
+          :placeholder="$t('placeholders.password')"
+        />
       </div>
       <Loader v-if="authStore.loader" />
       <div v-else class="flex flex-column gap-3">
-        <Button class="py-3 font-size" @click="signin" label="Signup" />
+        <Button class="py-3 font-size" @click="signin" :label="$t('signin')" />
         <span class="font-size"
-          >Are you not registered yet?<router-link class="link font-size" to="/signup"
-            >Sign up</router-link
-          ></span
+          >{{ $t('unregistered')
+          }}<router-link class="link font-size" to="/signup">{{ $t('signup') }}</router-link></span
         >
       </div>
     </form>

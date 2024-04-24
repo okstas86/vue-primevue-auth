@@ -1,0 +1,15 @@
+{
+  "login": "Log in",
+  "logout": "Log out",
+  "signup": "Sign up",
+  "signin": "Sign in",
+  "placeholders": {
+    "username": "Username",
+    "password": "Password"
+  },
+  "unregistered": "Are you not registered yet?",
+  "registered": "Are you alredy registered?",
+  "title": "Sports Car Store: Where Speed Meets",
+  "text": "Explore our lineup of the finest sports cars",
+  "lanquage": "En"
+}

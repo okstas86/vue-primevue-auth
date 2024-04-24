@@ -1,0 +1,15 @@
+{
+  "login": "Авторизация",
+  "signup": "Зарегестрироваться",
+  "signin": "Войти",
+
+  "placeholders": {
+    "username": "Имя пользователя",
+    "password": "Пароль"
+  },
+  "unregistered": "Вы еще не зарегистрированы?",
+  "registered": "Вы уже зарегистрированы?",
+  "title": "Sports Car Store: Where Speed Meets",
+  "text": "Ознакомьтесь с нашим модельным рядом лучших спортивных автомобилей",
+  "lanquage": "Ru"
+}

@@ -5,10 +5,11 @@
       <router-link class="menu__link" v-if="token" to="/cars">Cars</router-link>
     </div>
     <div class="menu__link_wrap">
-      <router-link class="menu__link" v-if="!token" to="/signin">Login</router-link>
-      <router-link class="menu__link" v-if="token" to="/signin" @click.prevent="logout"
-        >Logout</router-link
-      >
+      <router-link class="menu__link" v-if="!token" to="/signin">{{ $t('login') }}</router-link>
+      <router-link class="menu__link" to="#" @click="handleLang">{{ $t('lanquage') }}</router-link>
+      <router-link class="menu__link" v-if="token" to="/signin" @click.prevent="logout">{{
+        $t('logout')
+      }}</router-link>
     </div>
   </div>
   <div>
@@ -20,9 +21,11 @@
 import { computed } from 'vue'
 import { RouterView } from 'vue-router'
 import router from './router'
+import { useI18n } from 'vue-i18n'
 import { useAuthStore } from './stores/auth'
 
 const authStore = useAuthStore()
+const { t, locale } = useI18n({ useScope: 'global' })
 
 const token = computed(() => authStore.userInfo.token)
 
@@ -33,6 +36,11 @@ const checkUser = () => {
     authStore.userInfo.refreshToken = tokens.refreshToken
     authStore.userInfo.expiresIn = tokens.expiresIn
   }
+}
+
+const handleLang = () => {
+  if (locale.value === 'en' ? (locale.value = 'ru') : (locale.value = 'en'))
+    localStorage.setItem('lang', locale.value)
 }
 
 const logout = () => {
