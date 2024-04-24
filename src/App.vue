@@ -1,7 +1,7 @@
 <template>
   <div class="menu">
     <div class="menu__link_wrap">
-      <router-link class="menu__link" to="/">Home</router-link>
+      <router-link class="menu__link" to="/">Eclipse Motors</router-link>
       <router-link class="menu__link" v-if="token" to="/cars">Cars</router-link>
     </div>
     <div class="menu__link_wrap">
@@ -11,7 +11,7 @@
       >
     </div>
   </div>
-  <div class="container">
+  <div>
     <RouterView />
   </div>
 </template>
@@ -44,13 +44,16 @@ checkUser()
 </script>
 
 <style>
+html {
+  font-size: 62.5%;
+}
 * {
   margin: 0;
 }
 .container {
-  max-width: 700px;
+  max-width: 80rem;
   font-family: Arial, sans-serif;
-  margin: 6rem auto;
+  margin: 8rem auto;
 }
 
 .menu {
@@ -71,16 +74,63 @@ checkUser()
 }
 .link,
 .menu__link {
-  color: #059669;
+  color: #8e959d;
+
+  font-weight: 700;
+  border-radius: 1rem;
+
   text-decoration: none;
   padding: 1rem;
 }
 .menu__link {
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-weight: 600;
 }
 
 .menu__link:hover {
   color: #7c8085;
+}
+
+@media (max-width: 63em) {
+  html {
+    font-size: 55%;
+  }
+}
+@media (max-width: 56em) {
+  html {
+    font-size: 50%;
+  }
+}
+@media (max-width: 51em) {
+  .content__text {
+    margin-bottom: 25rem;
+  }
+  .image {
+    top: 27rem;
+    left: 0;
+  }
+  .content__title {
+    color: #00cd4f;
+  }
+}
+
+@media (max-width: 33em) {
+  html {
+    font-size: 45%;
+  }
+}
+@media (max-width: 30em) {
+  .image {
+    top: 33rem;
+    left: 0;
+  }
+  html {
+    font-size: 45%;
+  }
+}
+@media (max-width: 21em) {
+  html {
+    font-size: 35%;
+  }
 }
 </style>

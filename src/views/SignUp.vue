@@ -1,30 +1,32 @@
 <template>
-  <form class="flex flex-column gap-3">
-    <h2 class="title">Sign Up</h2>
-    <Message v-if="authStore.errorText" severity="error">{{ authStore.errorText }}</Message>
+  <div class="container">
+    <form class="flex flex-column gap-3">
+      <h2 class="title text-4xl">Sign Up</h2>
+      <Message v-if="authStore.errorText" severity="error">{{ authStore.errorText }}</Message>
 
-    <div class="p-inputgroup flex-1">
-      <span class="p-inputgroup-addon">
-        <i class="pi pi-user"></i>
-      </span>
-      <InputText type="email" v-model="email" placeholder="Your Email" />
-    </div>
-    <div class="p-inputgroup flex-1">
-      <span class="p-inputgroup-addon">
-        <i class="pi pi-at"></i>
-      </span>
-      <InputText type="password" v-model="password" placeholder="Password" />
-    </div>
-    <Loader v-if="authStore.loader" />
-    <div v-else class="flex flex-column gap-3">
-      <Button @click="signup" label="Signup" />
-      <span
-        >Are you alredy registered?<router-link class="link" to="/signin"
-          >Sign in</router-link
-        ></span
-      >
-    </div>
-  </form>
+      <div class="p-inputgroup flex-1">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-user text-2xl"></i>
+        </span>
+        <InputText class="input-text" type="email" v-model="email" placeholder="Your Email" />
+      </div>
+      <div class="p-inputgroup flex-1">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-at text-2xl"></i>
+        </span>
+        <InputText class="input-text" type="password" v-model="password" placeholder="Password" />
+      </div>
+      <Loader v-if="authStore.loader" />
+      <div v-else class="flex flex-column gap-3">
+        <Button class="py-3 font-size" @click="signup" label="Signup" />
+        <span class="font-size"
+          >Are you alredy registered?<router-link class="link font-size" to="/signin"
+            >Sign in</router-link
+          ></span
+        >
+      </div>
+    </form>
+  </div>
 </template>
 
 <script setup>
