@@ -14,7 +14,7 @@ import InputText from 'primevue/inputtext'
 import Message from 'primevue/message'
 import Card from 'primevue/card'
 import './api'
-import { createI18n } from 'vue-i18n'
+import { createI18n, useI18n } from 'vue-i18n'
 import { languages, defaultLocale } from './i18n'
 
 initializeApp(import.meta.env.VITE_FIRE_BASE)

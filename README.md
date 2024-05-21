@@ -1,5 +1,7 @@
 # jwt-vue3
 
+<img align="left" alt="Home page" width="1000" src="./public/home.png" />
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
